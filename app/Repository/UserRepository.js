@@ -21,6 +21,7 @@ module.exports = class UserController {
     // to get a specific user
     async get(id) {
         const results = await this.db.client.query(`SELECT * FROM users WHERE id = ${id}`);
+        // console.log(JSON.stringify(results.rows).length + ' test row')
         const user = results.rows;
 
         // console.log(JSON.stringify(user).length + ' test user')

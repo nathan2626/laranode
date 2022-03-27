@@ -1,5 +1,6 @@
 const Db =  require("../../bootstrap/Db.js")
 const UserRepository = require("../Repository/UserRepository.js")
+// const User = require("../Models/User.js")
 
 module.exports = class UserController {
     constructor(req, res) {

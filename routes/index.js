@@ -8,8 +8,11 @@ module.exports = class routes {
 
     if (this.req.url.match(/\/users\/([0-9]+)/) && this.req.method === 'GET') {
       console.log('test')
+      
+
       const id = this.req.url.split("/")[2];
       const userController = new UserController(this.req, this.res);
+
       userController.get(id);
       this.res.writeHead(200, { "Content-type": "text/plain" })
       this.res.statusCode = 200
