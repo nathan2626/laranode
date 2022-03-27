@@ -7,13 +7,14 @@ module.exports = class routes {
 
 
     if (this.req.url.match(/\/users\/([0-9]+)/) && this.req.method === 'GET') {
-        console.log('test')
-        const id = this.req.url.split("/")[2];
-        const userController = new UserController(this.req, this.res);
-        userController.get(id);
-        this.res.writeHead(200, { "Content-type": "text/plain" })
-
-    }  else if(this.req.url.match(/\/users\/([0-9]+)/) && this.req.method === 'PUT'){
+      console.log('test')
+      const id = this.req.url.split("/")[2];
+      const userController = new UserController(this.req, this.res);
+      userController.get(id);
+      this.res.writeHead(200, { "Content-type": "text/plain" })
+      this.res.statusCode = 200
+     
+    } else if(this.req.url.match(/\/users\/([0-9]+)/) && this.req.method === 'PUT'){
 
       const userController = new UserController(this.req, this.res);
       const id = this.req.url.split("/")[2];
@@ -23,6 +24,7 @@ module.exports = class routes {
               userController.update(id,name, email, password)
           })
           this.res.writeHead(200, { "Content-type": "text/plain" })
+          this.res.statusCode = 200
           this.res.write('user mis à jour')
           this.res.end()
     
@@ -31,6 +33,7 @@ module.exports = class routes {
       const id = this.req.url.split("/")[2];
       userController.delete(id)
       this.res.writeHead(204, { "Content-type": "text/plain" })
+      this.res.statusCode = 204
       this.res.write('user supprimé')
       this.res.end()
     }

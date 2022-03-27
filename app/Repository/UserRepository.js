@@ -23,6 +23,7 @@ module.exports = class UserController {
         const results = await this.db.client.query(`SELECT * FROM users WHERE id = ${id}`);
         const user = results.rows;
 
+        // console.log(JSON.stringify(user).length + ' test user')
         this.res.write(JSON.stringify(user));
         this.res.end();
     }
@@ -35,9 +36,10 @@ module.exports = class UserController {
             const res = await this.db.client.query(text, values)
             // console.log(res.rows)
             this.res.write(JSON.stringify(res.rows));
-            } catch (err) {
+        } 
+        catch (err) {
             console.log(err.stack)
-            }
+        }
         this.res.end()
     }
 
@@ -48,12 +50,14 @@ module.exports = class UserController {
         try {
             const res = await this.db.client.query(text, values)
             console.log("user update")
-            } catch (err) {
+        } 
+        catch (err) {
             console.log(err.stack)
-            }
         }
+    }
 
 
+    // to delete a user    
     async delete(id){
         const text = `DELETE FROM users WHERE id = $1`
         const values = [id]
